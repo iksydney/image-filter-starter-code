@@ -1,6 +1,7 @@
 import express, { response } from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
+import { Router, Request, Response } from 'express';
 
 (async () => {
 
@@ -30,8 +31,8 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   /**************************************************************************** */
 
   //! END @TODO1
-  app.get("/filteredimage",async (req, res) => {
-    let url = req.query.image_url;
+  app.get("/filteredimage",async (req: Request, res: Response) => {
+    const url = req.query.image_url;
     if(url){
       await filterImageFromURL(url).then((response)=>{
         res.sendFile(response);
